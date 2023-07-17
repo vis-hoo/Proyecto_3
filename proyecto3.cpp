@@ -4,6 +4,7 @@
 #include <vector>
 using namespace std;
 using namespace chrono;
+
 // VALOR ORIGINAL / 4
 #define SCOREBOARD_MIN 22500//90000
 #define SCOREBOARD_MAX 25000//100000
@@ -136,6 +137,8 @@ int main(){
     return 0;
 }
 
+//Función que imprime el menú principal.
+//Retorna si los valores deben ser ordenados de manera ascendente o descendente.
 bool menu(){
     cout << "\n\nCarreras de Algoritmos";
     cout << "\n\n1. Ascendente.";
@@ -146,6 +149,8 @@ bool menu(){
 }
 
 #pragma region Vector Inicialization
+//Función que inicializa un vector con valores aleatorios, sin repeticiones.
+//Recibe como parámetros un puntero a un vector y el valor total de elementos.
 void initializeRandom(vector<int> *random, int n){
     vector<int> &array = *random;
     for(int i = 0; i < n; i++){
@@ -164,6 +169,8 @@ void initializeRandom(vector<int> *random, int n){
     }
 }
 
+//Función que inicializa un vector con valores aleatorios repetidos.
+//Recibe como parámetros un puntero a un vector y el valor total de elementos.
 void initializeDuplicateRandom(vector<int> *duplicateRandom, int n){
     vector<int> &array = *duplicateRandom;
     for(int i = 0; i < n; i++){
@@ -172,11 +179,15 @@ void initializeDuplicateRandom(vector<int> *duplicateRandom, int n){
     }
 }
 
+//Función que inicializa un vector con valores ordenados de manera ascendente, sin repeticiones.
+//Recibe como parámetros un puntero a un vector y el valor total de elementos.
 void initializeSorted(vector<int> *sorted, int n){
     vector<int> &array = *sorted;
     for(int i = 0; i < n; i++) array.push_back(i + 1);
 }
 
+//Función que inicializa un vector con valores ordenados de manera descendente, sin repeticiones.
+//Recibe como parámetros un puntero a un vector y el valor total de elementos.
 void initializeReversed(vector<int> *reversed, int n){
     vector<int> &array = *reversed;
     for(int i = n; i > 0; i--) array.push_back(i);
@@ -184,6 +195,8 @@ void initializeReversed(vector<int> *reversed, int n){
 #pragma endregion
 
 #pragma region Sorting Algortithms
+//Función que aplica el algoritmo Selection Sort al grupo de valores.
+//Recibe como parámetros un puntero a un vector, el valor total de elementos, y el tipo de orden de los elementos.
 void selectionSort(vector<int> *data, int n, bool ascendente){
     vector<int> &array = *data;
     for(int i = 0; i < n; i++)
@@ -193,6 +206,8 @@ void selectionSort(vector<int> *data, int n, bool ascendente){
         }
 }
 
+//Función que aplica el algoritmo Bubble Sort al grupo de valores.
+//Recibe como parámetros un puntero a un vector, el valor total de elementos, y el tipo de orden de los elementos.
 void bubbleSort(vector<int> *data, int n, bool ascendente){
     vector<int> &array = *data;
     for(int i = 1; i < n; i++)
@@ -202,6 +217,8 @@ void bubbleSort(vector<int> *data, int n, bool ascendente){
         }
 }
 
+//Función que aplica el algoritmo Insertion Sort al grupo de valores.
+//Recibe como parámetros un puntero a un vector, el valor total de elementos, y el tipo de orden de los elementos.
 void insertionSort(vector<int> *data, int n, bool ascendente){
     vector<int> &array = *data;
     for(int i = 1; i < n; i++){
@@ -219,6 +236,8 @@ void insertionSort(vector<int> *data, int n, bool ascendente){
     }
 }
 
+//Función que intercambia la posición de dos valores en un grupo de valores.
+//Recibe como parámetros un puntero a un vector y la posición de los 2 valores a intercambiar.
 void swap(vector<int> *data, int i, int j){
     vector<int> &array = *data;
     int temp = array[i];
@@ -226,13 +245,16 @@ void swap(vector<int> *data, int i, int j){
     array[j] = temp;
 }
 
-// Knuth Gap
+//Función que retorna el valor del Knuth Gap para el algoritmo Shell Sort.
+//Recibe como parámetros el valor total de elementos.
 int getGap(int n){
     int gap = 0;
     while ((3 * gap) + 1 < n) gap = (3 * gap) + 1;
     return gap;
 }
 
+//Función que aplica el algoritmo Shell Sort al grupo de valores.
+//Recibe como parámetros un puntero a un vector, el valor total de elementos, y el tipo de orden de los elementos.
 void shellSort(vector<int> *data, int n, bool ascendente){
     vector<int> &array = *data;
     int gap = getGap(n);
@@ -257,6 +279,8 @@ void shellSort(vector<int> *data, int n, bool ascendente){
 }
 #pragma endregion
 
+//Función que ejecuta las carreras.
+//Recibe como parámetros 4 punteros a vectores, el valor total de elementos, el tipo de orden de los elementos, y el tipo de carrera.
 void racing(vector<int> *array1, vector<int> *array2, vector<int> *array3, vector<int> *array4, int n, bool ascendente, string carrera){
     double times[4];
 
@@ -300,6 +324,8 @@ void racing(vector<int> *array1, vector<int> *array2, vector<int> *array3, vecto
     cout << "con " << times[winner_index] << " segundos.";
 }
 
+//Función auxiliar que retorna un valor dentro de un rango.
+//Recibe como parámetros el texto, el mínimo y el máximo del rango.
 int intInput(string msg, int min, int max){
     int opt;
     do{
